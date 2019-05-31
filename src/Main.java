@@ -17,12 +17,14 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        List list = FileTool.getInfo("a.txt");
+        //读取配置文件 config.properties
+        List list = FileTool.getInfo(FileTool.getProperties("filename"));
 
-        Thread.sleep(3000);
 
-        System.out.println("======================程序开始======================\n");
 
+        System.out.println("======================算法开始======================\n");
+
+        //时间戳初始化
         TimeStampTool.InitTimeStampTool();
 
         for(Object o:list){

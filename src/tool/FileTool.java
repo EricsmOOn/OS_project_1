@@ -3,11 +3,10 @@ package tool;
 import pojo.Reader;
 import pojo.Writer;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * @ProjectName: OS_project_1
@@ -16,6 +15,9 @@ import java.util.List;
  * @Desc:
  */
 public class FileTool {
+
+    //属性读取
+    private static Properties properties = new Properties();
 
     public static List getInfo(String path) throws Exception {
         StringBuilder txt = getDataFromTxt(path);
@@ -76,6 +78,23 @@ public class FileTool {
         }
 
         return c;
+    }
+
+    /**
+     * @Description
+     * 读取配置文件 config.properties 里的key
+     * @parameters  [key]
+     * @return  String
+     */
+    public static String getProperties(String key) throws Exception{
+
+        InputStream in = new BufferedInputStream(new FileInputStream("config.properties"));
+
+        properties.load(in);
+        String value = properties.getProperty(key);
+        in.close();
+
+        return value;
     }
 
 
